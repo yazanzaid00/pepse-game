@@ -1,0 +1,43 @@
+# 10.2.4: Implementation Method for the `trees` Package
+
+## 10.2.4.1: Classes in the Package
+
+- **Tree:** Constructs a single tree by generating the trunk and canopy using a ground-height function. It builds trunk blocks (Logs) and canopy elements (Leaves and Fruits) while managing color consistency.
+- **Flora:** Acts as a facade to produce multiple trees over a defined X-range. It uses seeded randomness for consistency across runs and delegates individual tree construction to the Tree class.
+- **Log:** Extends the Block class to represent trunk segments. Logs mimic trunk colors and are tagged "trunk" to facilitate collision detection.
+- **Leaf:** Extends Block to model leaves, incorporating animations for oscillation in angle and size. Tagged "leaf" to minimize collision effects.
+- **Fruit:** A collectible, circular block that fades out upon collision and respawns after a delay. The collision logic is externalized through a strategy.
+- **FruitCollisionStrategy:** An interface defining custom collision responses for Fruit objects. Implementations include a basic fade-out strategy and one that awards energy upon collision.
+- **BasicFruitCollisionStrategy:** Default strategy that simply causes the fruit to disappear/fade-out upon collision (no other effect).
+- **ColorfulFruitCollisionStrategy:** Extended strategy that awards the avatar energy before the fruit disappears. Demonstrates the Open-Closed Principle.
+
+> The trees package encompasses classes that collaboratively facilitate the procedural generation and management of trees within the game environment. Utilizing inheritance for specialized components like Log and Leaf, and implementing the Strategy Pattern through FruitCollisionStrategy, the design promotes modularity and flexibility. This structure ensures each class has a single responsibility, enhancing maintainability and scalability in alignment with OOP best practices.
+
+## 10.2.4.2: Class Relationships
+
+- **Flora** interacts with **Tree** to create individual trees based on terrain height. **Tree** composes **Log**, **Leaf**, and **Fruit** to form a complete tree.
+- **Fruit** uses the **FruitCollisionStrategy** interface to implement flexible collision behaviors, allowing easy swapping of collision logic.
+- This modular structure ensures a clear separation of concerns: tree generation, object construction, and collision management.
+
+> Hence, each tree is composed of trunk blocks and canopy objects. `Flora` orchestrates when/where to generate multiple trees. `FruitCollisionStrategy` decouples the fruit’s logic from collision behavior.
+
+## 10.2.4.3: Design Patterns Utilized
+
+- **Strategy Pattern:** Implemented via the `FruitCollisionStrategy` interface, enabling changes to collision logic without altering the Fruit class.
+- **Factory-Like Design:** **Flora** and **Tree** cooperate to modularly generate tree components.
+- **Program to Interface Principle:** The design accepts a ground-height function instead of a direct terrain reference, ensuring adaptability and reusability.
+- **Facade Pattern:** Utilized by the Flora and Tree classes to provide a unified interface for generating multiple trees across a specified range. This abstraction simplifies tree creation by encapsulating the complexities of individual Tree instances, promoting easier management and scalability.
+
+> The trees package leverages several design patterns to enhance its architecture. The Strategy Pattern is employed via the FruitCollisionStrategy interface, allowing flexible collision behaviors without altering the Fruit class. The Facade Pattern is implemented by the Flora class, providing a simplified interface for generating multiple trees and encapsulating the complexities of individual Tree instances. Additionally, the Factory-Like Design and adherence to the Program to Interface Principle promote modularity and reusability, ensuring the system remains open for extension but closed for modification.
+
+## 10.2.4.4: Cloud and Overall Design Choices
+
+- **Cloud Class:** Located in the weather package, it renders moving clouds using white blocks. Horizontal movement is animated via a looping transition.
+- **Raindrop Interaction:** By implementing the **JumpListener** interface, the Cloud triggers random raindrop releases upon avatar jumps. Raindrops fade out and disappear upon reaching full transparency.
+- **InfiniteWorldManager:** Dynamically generates terrain and flora in screen-width chunks based on the avatar’s position.
+- **InfiniteWorldObjectPlacer:** A facade that manages object placement and removal across game layers. It centralizes layer management logic, reducing complexity in InfiniteWorldManager and eliminating scattered object placement code.
+- **Collision Optimization:** A layered approach restricts collision checks to essential object groups, improving performance.
+- **Reproducible Randomness:** Hashing coordinates with a seed ensures consistent world generation across different runs.
+- **Design Principles:** The overall architecture adheres to open-closed, single responsibility, and composition-over-inheritance principles, ensuring maintainable and robust code.
+
+> The overall design integrates the Cloud class and InfiniteWorldObjectPlacer facade to manage dynamic world elements effectively. By implementing the Observer Pattern through the JumpListener interface, clouds can respond to avatar actions, such as triggering raindrop effects. The InfiniteWorldManager handles the seamless loading and unloading of terrain and flora based on the avatar’s position, while the InfiniteWorldObjectPlacer centralizes object placement across game layers. These design choices, underpinned by principles like Open-Closed, Single Responsibility, and Composition-over-Inheritance, ensure a maintainable, scalable, and efficient codebase, providing a cohesive foundation for the Pepse project.

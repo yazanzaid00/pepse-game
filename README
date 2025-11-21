@@ -1,35 +1,72 @@
-yazanzaid
-315227447
+Pepse – 2D Infinite World Game
+================================
 
+Small Java game built on top of DanoGameLab: procedural terrain, trees, fruits, weather, and an avatar roaming an infinite side-scrolling world.
 
-## Build and Run
+Features
+--------
+- Infinite terrain chunks via noise-based generation
+- Day/night cycle (sun, halo, night overlay)
+- Trees with animated leaves and collectible fruits
+- Cloud/rain weather triggered by avatar jumps
+- Energy bar UI with idle/run/jump feedback
 
-**Requirements**
-- JDK 17+ (JRE alone is insufficient)
-- `make` (for macOS/Linux path)
-- `lib/DanoGameLab.jar` (already stored under `lib/` with no spaces in the path)
+Controls
+--------
+- `←` / `→` – move
+- `Space` – jump
 
-### macOS / Linux (Makefile)
+Requirements
+------------
+- Java JDK 17+
+- `make` (macOS / Linux)
+- `lib/DanoGameLab.jar` (under `lib/`)
+
+Build & Run (macOS / Linux)
+---------------------------
 ```bash
 git clone https://github.com/<your-user>/<your-repo>.git
-cd <your-repo>/ex4
+cd <your-repo>
 make run
 ```
 
-Targets:
-- `make` / `make run` – compile sources into `bin/` then launch the game.
-- `make build` – compile only.
-- `make clean` – remove `bin/`.
+Useful targets:
+- `make` – compile into `bin/`
+- `make run` – compile + run
+- `make clean` – remove build artifacts
 
-### Windows (Batch script)
+Build & Run (Windows)
+---------------------
+Option A – use the script:
 ```bat
 git clone https://github.com/<your-user>/<your-repo>.git
-cd <your-repo>\ex4
+cd <your-repo>
 run_windows.bat
 ```
-The script mirrors the Makefile flow: cleans `bin/`, compiles via `javac -cp "lib\DanoGameLab.jar"`, then runs `pepse.PepseGameManager`.
+Option B – manual commands:
+```bat
+rmdir /S /Q bin
+mkdir bin
+dir /S /B pepse\*.java > sources.txt
+javac -cp "lib\DanoGameLab.jar" -d bin @sources.txt
+del sources.txt
+java -cp "bin;lib\DanoGameLab.jar" pepse.PepseGameManager
+```
 
-# 10.2.4: Implementation Method for the `trees` Package
+Project Structure
+-----------------
+- `pepse/` – game source (avatar, terrain, weather, UI, infinite world)
+- `assets/` – sprite sheets for avatar animations
+- `lib/DanoGameLab.jar` – engine dependency
+- `media/` – optional GIFs / screenshots
+- `Makefile` / `run_windows.bat` – build helpers
+- `README.md` – quick overview
+- `DESIGN.md` – detailed design notes (trees, weather, patterns)
+
+Notes & Credits
+---------------
+- Created for the HUJI OOP course using the DanoGameLab toolkit.
+- Engine and base utilities were supplied by the course staff.
 
 ## 10.2.4.1: Classes in the Package
 
