@@ -1,6 +1,8 @@
 # 10.2.4: Implementation Method for the `trees` Package
+**Question 10.2.4:** Explain the method you chose to implement the `trees` package, referring to points 10.2.4.1–10.2.4.4 below.
 
 ## 10.2.4.1: Classes in the Package
+**Question 10.2.4.1:** Detail the different classes you created in the package.
 
 - **Tree:**
   Constructs a single tree by generating the trunk and canopy using a
@@ -45,6 +47,7 @@
 > and scalability in alignment with OOP best practices.
 
 ## 10.2.4.2: Class Relationships
+**Question 10.2.4.2:** Explain the relationships between the classes.
 
 - **Flora** interacts with **Tree** to create individual trees based on terrain
   height. The **Tree** class composes **Log**, **Leaf**, and **Fruit** to form
@@ -61,6 +64,7 @@
 > `FruitCollisionStrategy` decouples the fruit’s logic from collision behavior.
 
 ## 10.2.4.3: Design Patterns Utilized
+**Question 10.2.4.3:** Did you use any design pattern?
 
 - **Strategy Pattern:**
   Implemented via the `FruitCollisionStrategy` interface, enabling changes to
@@ -89,6 +93,7 @@ promoting easier management and scalability.
 > ensuring the system remains open for extension but closed for modification.
 
 ## 10.2.4.4: Cloud and Overall Design Choices
+**Question 10.2.4.4:** Beyond the trees package, explain the design choices regarding the cloud and the overall design of the code.
 
 - **Cloud Class:**
   Located in the weather package, it renders moving clouds using white blocks.
