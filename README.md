@@ -72,4 +72,4 @@ run_windows.bat
 
 ## Notes & Credits
 
-* Uses the DanoGameLab framework and course-supplied utilities.
+* Uses the DanoGameLab framework and utilities.
