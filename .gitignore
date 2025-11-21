@@ -1,0 +1,48 @@
+### IntelliJ IDEA ###
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### General build artifacts ###
+*.class
+*.log
+*.tmp
+*.swp
+*.swo
+*.zip
+tmp/
+backup/
+sources.txt
+*.orig
+
+### Project metadata ###
+.idea/
+*.iml
+ex4.iml
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+.github/
+
+excluded/
+### Mac OS ###
+.DS_Store
