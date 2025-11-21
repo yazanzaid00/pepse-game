@@ -2,6 +2,7 @@
 
 Small Java game built on top of DanoGameLab: procedural terrain, trees, fruits, simple weather, and a controllable avatar in an infinite side-scrolling world.
 
+![Pepse Avatar](media/pepse-avatar.png)
 ![Pepse Gameplay](media/pepse-gameplay.gif)
 
 ---
